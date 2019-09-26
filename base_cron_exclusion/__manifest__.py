@@ -16,6 +16,6 @@
     "data": [
         "views/ir_cron_view.xml",
     ],
-    "license": "LGPL-3",
-    "installable": True,
+    "license": "AGPL-3",
+    "installable": False,
 }

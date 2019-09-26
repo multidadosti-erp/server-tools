@@ -21,5 +21,12 @@
         "wizard/base_exception_confirm_view.xml",
         "views/base_exception_view.xml",
     ],
-    "installable": True,
+    'license': 'AGPL-3',
+    'data': [
+        'security/base_exception_security.xml',
+        'security/ir.model.access.csv',
+        'wizard/base_exception_confirm_view.xml',
+        'views/base_exception_view.xml',
+    ],
+    'installable': False,
 }
