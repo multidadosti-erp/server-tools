@@ -7,7 +7,7 @@
  'category': 'server',
  'depends': ['base'],
  'website': 'https://github.com/OCA/server-tools',
- 'installable': True,
+ 'installable': False,
  'auto_install': False,
  'license': 'AGPL-3',
  }
