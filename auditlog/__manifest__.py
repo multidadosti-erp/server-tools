@@ -19,5 +19,5 @@
         'views/http_request_view.xml',
     ],
     'application': True,
-    'installable': True,
+    'installable': False,
 }
