@@ -22,7 +22,7 @@
           'report_action/partner_list/templates.xml',
           'report_action/partner_list/report_partner_list.xml',
           ],
- 'installable': True,
+ 'installable': False,
  'development_status': 'Alpha',
  'maintainers': ['kittiu'],
  }
