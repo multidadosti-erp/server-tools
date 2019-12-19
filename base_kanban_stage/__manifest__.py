@@ -18,6 +18,6 @@
         'views/base_kanban_stage.xml',
         'views/ir_model_views.xml',
     ],
-    'installable': True,
+    'installable': False,
     'application': False,
 }
