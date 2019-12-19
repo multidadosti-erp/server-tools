@@ -9,7 +9,7 @@
     "author": "SMDrugstore, Odoo Community Association (OCA)",
     "license": "LGPL-3",
     "application": False,
-    "installable": True,
+    "installable": False,
     "depends": [
         "base_kanban_stage",
     ],
