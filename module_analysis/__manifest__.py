@@ -30,5 +30,5 @@
         'python': ['pygount'],
     },
     'post_init_hook': 'analyse_installed_modules',
-    'installable': True,
+    'installable': False,
 }
