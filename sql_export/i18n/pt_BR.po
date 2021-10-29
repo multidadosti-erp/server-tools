@@ -1,25 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sql_export
+#	* sql_export
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
-# danimaribeiro <danimaribeiro@gmail.com>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-06 02:51+0000\n"
-"PO-Revision-Date: 2019-09-02 22:23+0000\n"
-"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
-"Language: pt_BR\n"
+"POT-Creation-Date: 2021-10-29 18:00+0000\n"
+"PO-Revision-Date: 2021-10-29 18:00+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.8\n"
+"Plural-Forms: \n"
 
 #. module: sql_export
 #: model:ir.model,name:sql_export.model_sql_file_wizard
@@ -95,15 +89,10 @@ msgid "Csv File"
 msgstr "Arquivo Csv"
 
 #. module: sql_export
-#: model:ir.model.fields,field_description:sql_export.date_field_variable_sql
-msgid "Date"
-msgstr ""
-
-#. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__display_name
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__display_name
 msgid "Display Name"
-msgstr "Nome para Mostrar"
+msgstr "Nome exibido"
 
 #. module: sql_export
 #: selection:sql.export,state:0
@@ -144,7 +133,7 @@ msgstr "Arquivo"
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__file_format
 msgid "File Format"
-msgstr ""
+msgstr "Formato do arquivo"
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__file_name
@@ -155,13 +144,13 @@ msgstr "Nome do Arquivo"
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__id
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard__id
 msgid "ID"
-msgstr "Identificação"
+msgstr "Id."
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export____last_update
 #: model:ir.model.fields,field_description:sql_export.field_sql_file_wizard____last_update
 msgid "Last Modified on"
-msgstr "Última atualização em"
+msgstr "Última modificação em"
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__write_uid
@@ -187,14 +176,9 @@ msgid "Parameters"
 msgstr "Parâmetros"
 
 #. module: sql_export
-#: model:ir.model.fields,field_description:sql_export.m2m_field_variable_sql
-msgid "Partner Categories"
-msgstr ""
-
-#. module: sql_export
 #: model_terms:ir.ui.view,arch_db:sql_export.sql_export_view_form
 msgid "Preview Results"
-msgstr ""
+msgstr "Pré-visualização"
 
 #. module: sql_export
 #: model:ir.model.fields,field_description:sql_export.field_sql_export__query
@@ -259,12 +243,10 @@ msgstr "Estado"
 
 #. module: sql_export
 #: model:ir.model.fields,help:sql_export.field_sql_export__state
-msgid ""
-"State of the Request:\n"
+msgid "State of the Request:\n"
 " * 'Draft': Not tested\n"
 " * 'SQL Valid': SQL Request has been checked and is valid"
-msgstr ""
-"Estado da solicitação:\n"
+msgstr "Estado da solicitação:\n"
 "  * 'Rascunho': não testado\n"
 "  * 'SQL Valid': a solicitação SQL foi verificada e é válida"
 
@@ -281,37 +263,33 @@ msgstr "Validar expressão SQL"
 
 #. module: sql_export
 #: model:ir.model.fields,help:sql_export.field_sql_export__query
-msgid ""
-"You can't use the following words: DELETE, DROP, CREATE, INSERT, ALTER, "
-"TRUNCATE, EXECUTE, UPDATE."
-msgstr ""
-"Você não pode usar as seguintes palavras: DELETE, DROP, CREATE, INSERT, "
-"ALTER, TRUNCATE, EXECUTE, UPDATE."
+msgid "You can't use the following words: DELETE, DROP, CREATE, INSERT, ALTER, TRUNCATE, EXECUTE, UPDATE."
+msgstr "Você não pode usar as seguintes palavras: DELETE, DROP, CREATE, INSERT, ALTER, TRUNCATE, EXECUTE, UPDATE."
 
 #. module: sql_export
 #: selection:sql.export,encoding:0
 msgid "big5"
-msgstr "big5"
+msgstr ""
 
 #. module: sql_export
 #: selection:sql.export,encoding:0
 msgid "gb18030"
-msgstr "gb18030"
+msgstr ""
 
 #. module: sql_export
 #: selection:sql.export,encoding:0
 msgid "koir8_r"
-msgstr "koir8_r"
+msgstr ""
 
 #. module: sql_export
 #: selection:sql.export,encoding:0
 msgid "latin1"
-msgstr "latin1"
+msgstr ""
 
 #. module: sql_export
 #: selection:sql.export,encoding:0
 msgid "latin2"
-msgstr "latin2"
+msgstr ""
 
 #. module: sql_export
 #: model_terms:ir.ui.view,arch_db:sql_export.sql_file_wizard_view_form
@@ -321,39 +299,34 @@ msgstr "ou"
 #. module: sql_export
 #: model_terms:ir.ui.view,arch_db:sql_export.sql_export_view_form
 msgid "select * from res_partner"
-msgstr "select * from res_partner"
+msgstr ""
 
 #. module: sql_export
 #: selection:sql.export,encoding:0
 msgid "shift_jis"
-msgstr "shift_jis"
+msgstr ""
 
 #. module: sql_export
 #: selection:sql.export,encoding:0
 msgid "utf-16"
-msgstr "utf-16"
+msgstr ""
 
 #. module: sql_export
 #: selection:sql.export,encoding:0
 msgid "utf-8"
-msgstr "utf-8"
+msgstr ""
 
 #. module: sql_export
 #: model_terms:ir.ui.view,arch_db:sql_export.sql_file_wizard_view_form
 msgid "variables_placeholder"
-msgstr "variables_placeholder"
+msgstr ""
 
 #. module: sql_export
 #: selection:sql.export,encoding:0
 msgid "windows-1251"
-msgstr "windows-1251"
+msgstr ""
 
 #. module: sql_export
 #: selection:sql.export,encoding:0
 msgid "windows-1252"
-msgstr "windows-1252"
-
-#. module: sql_export
-#: model:ir.model.fields,field_description:sql_export.integer_field_variable_sql
-msgid "x_ID"
 msgstr ""
