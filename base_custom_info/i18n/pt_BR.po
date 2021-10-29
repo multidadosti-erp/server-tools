@@ -552,10 +552,7 @@ msgstr "Necessário"
 
 #. module: base_custom_info
 #: model_terms:ir.ui.view,arch_db:base_custom_info.custom_info_value_search
-<<<<<<< HEAD
 #, fuzzy
-=======
->>>>>>> [IMP] Traduz módulo 'base_custom_info'
 msgid "Resource"
 msgstr "Recurso"
 

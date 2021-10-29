@@ -22,5 +22,5 @@
     'demo': [
         'demo/sql_export.xml',
     ],
-    'installable': False,
+    'installable': True,
     }
