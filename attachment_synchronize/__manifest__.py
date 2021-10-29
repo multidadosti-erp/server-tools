@@ -23,6 +23,6 @@
         "security/ir.model.access.csv",
     ],
     "demo": ["demo/attachment_synchronize_task_demo.xml"],
-    "installable": True,
+    "installable": False,
     "development_status": "Beta",
 }
