@@ -4,7 +4,7 @@
 
 {
     'name': 'SQL Request Abstract',
-    'version': '12.0.1.0.2',
+    'version': '12.0.1.2.0',
     'author': 'GRAP,Akretion,Odoo Community Association (OCA)',
     'website': 'https://www.odoo-community.org',
     'license': 'AGPL-3',
@@ -18,5 +18,5 @@
         'security/res_groups.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': False,
+    'installable': True,
 }
