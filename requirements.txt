@@ -4,3 +4,4 @@ xlrd
 xlwt
 pysftp
 pygount>1.2.1
+delivery-carrier
