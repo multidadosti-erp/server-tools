@@ -15,7 +15,8 @@
               'Odoo Community Association (OCA)',
     'license': 'LGPL-3',
     'application': False,
-    'installable': False,
+    'installable': True,
+    'auto_install': True,
     'uninstall_hook': 'uninstall_hook',
     'depends': [
         'base',
