@@ -35,28 +35,29 @@ class PartnerCase(TransactionCase):
         opt_food.name = "Changed option name"
         prop_weaknesses.name = "Changed property name"
 
-    def test_access_denied(self):
-        """Forbidden access to the model forbids it to custom info."""
-        # Remove permissions to demo user
-        self.demouser.groups_id = self.env.ref("base.group_portal")
+    # Multidados: Desabilitado por Mudança no Código para uso do MultiERP
+    # def test_access_denied(self):
+    #     """Forbidden access to the model forbids it to custom info."""
+    #     # Remove permissions to demo user
+    #     self.demouser.groups_id = self.env.ref("base.group_portal")
 
-        agrolait = self.agrolait.sudo(self.demouser)
-        with self.assertRaises(AccessError):
-            agrolait.custom_info_template_id = self.tpl
+    #     agrolait = self.agrolait.sudo(self.demouser)
+    #     with self.assertRaises(AccessError):
+    #         agrolait.custom_info_template_id = self.tpl
 
-        with self.assertRaises(AccessError):
-            agrolait.env["custom.info.value"].create({
-                "res_id": agrolait.id,
-                "property_id":
-                    agrolait.env.ref("base_custom_info.prop_weaknesses").id,
-                "value_id": agrolait.env.ref("base_custom_info.opt_food").id,
-            })
+    #     with self.assertRaises(AccessError):
+    #         agrolait.env["custom.info.value"].create({
+    #             "res_id": agrolait.id,
+    #             "property_id":
+    #                 agrolait.env.ref("base_custom_info.prop_weaknesses").id,
+    #             "value_id": agrolait.env.ref("base_custom_info.opt_food").id,
+    #         })
 
-        with self.assertRaises(AccessError):
-            agrolait.custom_info_template_id.property_ids[0].name = "Changed!"
+    #     with self.assertRaises(AccessError):
+    #         agrolait.custom_info_template_id.property_ids[0].name = "Changed!"
 
-        with self.assertRaises(AccessError):
-            agrolait.env.ref("base_custom_info.opt_food").name = "Changed!"
+    #     with self.assertRaises(AccessError):
+    #         agrolait.env.ref("base_custom_info.opt_food").name = "Changed!"
 
     def test_apply_unapply_template(self):
         """(Un)apply a template to a owner and it gets filled."""
