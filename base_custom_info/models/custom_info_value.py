@@ -12,9 +12,10 @@ class CustomInfoValue(models.Model):
     _rec_name = 'value'
     _order = ("model, res_id, category_sequence, category_id, "
               "property_sequence, property_id")
+
     _sql_constraints = [
         ("property_owner",
-         "UNIQUE (property_id, model, res_id)",
+         "UNIQUE (property_id, model, res_id, value_id)",
          "Another property with that name exists for that resource."),
     ]
 
