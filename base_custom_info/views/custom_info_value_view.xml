@@ -3,24 +3,23 @@
      Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
      License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
 <odoo>
-
     <record id="custom_info_value_tree" model="ir.ui.view">
         <field name="model">custom.info.value</field>
         <field name="arch" type="xml">
-            <tree string="Custom Property Values" create="0" delete="0">
-                <field name="owner_id" />
-                <field name="property_id" force_save="1"/>
-                <field name="category_id" force_save="1"/>
+            <tree string="Custom Property Values" create="1" delete="1">
+                <field name="owner_id"/>
+                <field name="property_id" force_save="1" options="{'no_create': True, 'no_open': True}"/>
+                <field name="category_id" force_save="1" options="{'no_create': True, 'no_open': True}"/>
                 <field name="required" invisible="1"/>
                 <field name="field_type" invisible="1"/>
                 <field name="value"
-                    attrs="{'invisible': [('field_type', '=', 'id')], 'required': [('required', '=', True), ('field_type', '!=', 'id')]}"
-                />
+                       attrs="{'invisible': [('field_type', '=', 'id')],
+                               'required': [('required', '=', True), ('field_type', '!=', 'id')]}"/>
                 <field name="value_id"
-                    force_save="1"
-                    options="{'no_create': True, 'no_open': True}"
-                    attrs="{'invisible': [('field_type', '!=', 'id')], 'required': [('required', '=', True), ('field_type', '=', 'id')]}"
-                />
+                       force_save="1"
+                       options="{'no_create': True, 'no_open': True}"
+                       attrs="{'invisible': [('field_type', '!=', 'id')],
+                               'required': [('required', '=', True), ('field_type', '=', 'id')]}"/>
             </tree>
         </field>
     </record>
