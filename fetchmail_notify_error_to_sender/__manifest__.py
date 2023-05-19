@@ -22,6 +22,6 @@
     ],
     'qweb': [
     ],
-    'installable': False,
+    'installable': True,
     'application': False,
 }
