@@ -15,6 +15,6 @@
     'data': [
         'views/mail_view.xml',
     ],
-    'installable': True,
+    'installable': False,
     'application': False,
 }

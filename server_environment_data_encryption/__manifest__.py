@@ -7,6 +7,6 @@
     "website": "https://github.com/OCA/server-env",
     "author": "Akretion, Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "installable": True,
+    "installable": False,
     "depends": ["server_environment", "data_encryption"],
 }

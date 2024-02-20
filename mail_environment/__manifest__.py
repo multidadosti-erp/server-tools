@@ -13,4 +13,6 @@
         'fetchmail',
         'server_environment',
     ],
+    'installable': False,
+    'application': False,
 }

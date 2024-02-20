@@ -13,5 +13,5 @@
     'depends': [
         'mail', 'test_mail',
     ],
-    'installable': True,
+    'installable': False,
 }

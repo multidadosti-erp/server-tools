@@ -13,4 +13,6 @@
         'server_environment',
         'base_delivery_carrier_label',
     ],
+    'installable': False,
+    'auto_install': False,
 }

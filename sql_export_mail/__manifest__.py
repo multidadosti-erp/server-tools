@@ -17,5 +17,5 @@
         'views/sql_export_view.xml',
         'mail_template.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

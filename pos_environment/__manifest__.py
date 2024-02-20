@@ -20,5 +20,5 @@
     'qweb': [
         'static/src/xml/pos_environment.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

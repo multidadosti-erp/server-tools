@@ -9,5 +9,5 @@
     "category": "Others",
     "license": "LGPL-3",
     "data": ["views/ir_model_views.xml", "views/res_users_views.xml"],
-    "installable": True,
+    "installable": False,
 }

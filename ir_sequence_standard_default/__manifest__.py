@@ -18,6 +18,6 @@
         'views/res_config_settings_views.xml',
         'wizard/sequence_standard_default_views.xml',
     ],
-    'installable': True,
+    'installable': False,
     'application': False,
 }

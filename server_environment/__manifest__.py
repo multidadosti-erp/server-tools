@@ -18,5 +18,5 @@
         'security/res_groups.xml',
         'serv_config.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

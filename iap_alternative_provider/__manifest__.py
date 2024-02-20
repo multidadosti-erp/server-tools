@@ -13,7 +13,7 @@
     "maintainers": ["sebastienbeau"],
     "license": "AGPL-3",
     "application": False,
-    "installable": True,
+    "installable": False,
     "external_dependencies": {"python": [], "bin": []},
     "depends": ["iap", "server_environment"],
     "data": ["views/iap_account_view.xml"],

@@ -16,7 +16,7 @@
      'security/carrier_security.xml',
      'wizard/manifest_wizard_view.xml',
  ],
- 'installable': True,
+ 'installable': False,
  'auto_install': False,
  'license': 'AGPL-3',
  }
