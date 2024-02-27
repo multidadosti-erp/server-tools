@@ -20,5 +20,5 @@
     'data': [
         'views/sql_export_view.xml',
     ],
-    'installable': False,
+    'installable': True,
     }
