@@ -15,14 +15,12 @@
                     <group>
                         <group>
                             <field name="custom_info_template_id"
-                                   options='{"no_quick_create": True}'
-                            />
+                                   options='{"no_quick_create": True}'/>
                         </group>
                         <field name="custom_info_ids"
                                colspan="4"
                                nolabel="1"
-                               mode="custom_info"
-                        />
+                               mode="custom_info"/>
                     </group>
                 </page>
             </xpath>

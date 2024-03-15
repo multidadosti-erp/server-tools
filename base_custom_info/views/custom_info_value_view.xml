@@ -52,9 +52,9 @@
         <field name="mode">primary</field>
         <field name="inherit_id" ref="custom_info_value_tree"/>
         <field name="arch" type="xml">
-            <tree position="attributes">
+            <!-- <tree position="attributes">
                 <attribute name="editable">bottom</attribute>
-            </tree>
+            </tree> -->
             <field name="owner_id" position="replace" />
         </field>
     </record>
@@ -67,30 +67,25 @@
                     <group name="metadata">
                         <field name="owner_id" invisible="context.get('embed')"/>
                         <field name="property_id" readonly="context.get('embed')"/>
-                        <field name="category_id"/>
+                        <field name="category_id" invisible="context.get('embed')"/>
                         <field name="field_type" readonly="True"/>
                         <field name="required" readonly="True"/>
                     </group>
+
                     <group name="value">
                         <field name="value_str"
-                               attrs="{'invisible': [('field_type', '!=', 'str')], 'required': [('required', '=', True), ('field_type', '=', 'str')]}"
-                        />
+                               attrs="{'invisible': [('field_type', '!=', 'str')], 'required': [('required', '=', True), ('field_type', '=', 'str')]}"/>
                         <field name="value_int"
-                               attrs="{'invisible': [('field_type', '!=', 'int')], 'required': [('required', '=', True), ('field_type', '=', 'int')]}"
-                        />
+                               attrs="{'invisible': [('field_type', '!=', 'int')], 'required': [('required', '=', True), ('field_type', '=', 'int')]}"/>
                         <field name="value_float"
-                               attrs="{'invisible': [('field_type', '!=', 'float')], 'required': [('required', '=', True), ('field_type', '=', 'float')]}"
-                        />
+                               attrs="{'invisible': [('field_type', '!=', 'float')], 'required': [('required', '=', True), ('field_type', '=', 'float')]}"/>
                         <field name="value_bool"
-                               attrs="{'invisible': [('field_type', '!=', 'bool')], 'required': [('required', '=', True), ('field_type', '=', 'bool')]}"
-                        />
+                               attrs="{'invisible': [('field_type', '!=', 'bool')], 'required': [('required', '=', True), ('field_type', '=', 'bool')]}"/>
                         <field name="value_date"
-                               attrs="{'invisible': [('field_type', '!=', 'date')], 'required': [('required', '=', True), ('field_type', '=', 'date')]}"
-                        />
+                               attrs="{'invisible': [('field_type', '!=', 'date')], 'required': [('required', '=', True), ('field_type', '=', 'date')]}"/>
                         <field name="value_id"
                                widget="selection"
-                               attrs="{'invisible': [('field_type', '!=', 'id')], 'required': [('required', '=', True), ('field_type', '=', 'id')]}"
-                        />
+                               attrs="{'invisible': [('field_type', '!=', 'id')], 'required': [('required', '=', True), ('field_type', '=', 'id')]}" />
                     </group>
                     <div class="alert alert-warning" role="alert" invisible="not context.get('embed')">
                         <strong>Warning!</strong>
@@ -98,6 +93,16 @@
                     </div>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="custom_info_value_form_editable" model="ir.ui.view">
+        <field name="model">custom.info.value</field>
+        <field name="inherit_id" ref="custom_info_value_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='property_id']" position="replace">
+                <field name="property_id"/>
+            </xpath>
         </field>
     </record>
 
