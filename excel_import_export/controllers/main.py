@@ -32,7 +32,7 @@ class ReportController(report.ReportController):
             excel, report_name = report.with_context(context).render_excel(
                 docids, data=data
             )
-            excel = base64.decodestring(excel)
+            excel = base64.decodebytes(excel)
             if report.print_report_name and not len(docids) > 1:
                 obj = request.env[report.model].browse(docids[0])
                 file_ext = report_name.split('.')[-1:].pop()

@@ -224,7 +224,7 @@ def str_to_number(input_val):
 
 
 def csv_from_excel(excel_content, delimiter, quote):
-    decoded_data = base64.decodestring(excel_content)
+    decoded_data = base64.decodebytes(excel_content)
     wb = xlrd.open_workbook(file_contents=decoded_data)
     sh = wb.sheet_by_index(0)
     content = StringIO()

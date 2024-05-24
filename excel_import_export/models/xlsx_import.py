@@ -123,7 +123,7 @@ class XLSXImport(models.AbstractModel):
             return
         try:
             header_fields = []
-            decoded_data = base64.decodestring(import_file)
+            decoded_data = base64.decodebytes(import_file)
             wb = xlrd.open_workbook(file_contents=decoded_data)
             col_idx = 0
             out_wb = xlwt.Workbook()
