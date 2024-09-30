@@ -253,7 +253,7 @@ class XLSXExport(models.AbstractModel):
         content = BytesIO()
         wb.save(content)
         content.seek(0)  # Set index to 0, and start reading
-        out_file = base64.encodestring(content.read())
+        out_file = base64.encodebytes(content.read())
         if record and 'name' in record and record.name:
             out_name = record.name.replace(' ', '').replace('/', '')
         else:
