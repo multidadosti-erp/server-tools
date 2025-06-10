@@ -7,8 +7,8 @@ License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
     <template id="assets_common" inherit_id="web.assets_common">
         <xpath expr="link[@href='/web/static/lib/fontawesome/css/font-awesome.css']" position="replace">
             <link rel="stylesheet" type="text/css" href="/base_fontawesome/static/src/css/fontawesome.css"/>
-            <link rel="stylesheet" type="text/css" href="/base_fontawesome/static/lib/fontawesome-6.5.1/css/all.css"/>
-            <link rel="stylesheet" type="text/css" href="/base_fontawesome/static/lib/fontawesome-6.5.1/css/v4-shims.css"/>
+            <link rel="stylesheet" type="text/css" href="/base_fontawesome/static/lib/fontawesome-6.7.2/css/all.css"/>
+            <link rel="stylesheet" type="text/css" href="/base_fontawesome/static/lib/fontawesome-6.7.2/css/v4-shims.css"/>
         </xpath>
         
         <xpath expr="." position="inside">
@@ -19,8 +19,8 @@ License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
     
     <template id="report_assets_common" inherit_id="web.report_assets_common">
         <xpath expr="link[@href='/web/static/lib/fontawesome/css/font-awesome.css']" position="replace">
-            <link rel="stylesheet" type="text/css" href="/base_fontawesome/static/lib/fontawesome-6.5.1/css/all.css"/>
-            <link rel="stylesheet" type="text/css" href="/base_fontawesome/static/lib/fontawesome-6.5.1/css/v4-shims.css"/>
+            <link rel="stylesheet" type="text/css" href="/base_fontawesome/static/lib/fontawesome-6.7.2/css/all.css"/>
+            <link rel="stylesheet" type="text/css" href="/base_fontawesome/static/lib/fontawesome-6.7.2/css/v4-shims.css"/>
         </xpath>
     </template>
 </odoo>
