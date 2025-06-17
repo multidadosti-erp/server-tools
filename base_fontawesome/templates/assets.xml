@@ -10,13 +10,15 @@ License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
             <link rel="stylesheet" type="text/css" href="/base_fontawesome/static/lib/fontawesome-6.7.2/css/all.css"/>
             <link rel="stylesheet" type="text/css" href="/base_fontawesome/static/lib/fontawesome-6.7.2/css/v4-shims.css"/>
         </xpath>
-        
+    </template>
+
+    <template id="assets_backend" name="br_portal_assets" inherit_id="web.assets_backend">
         <xpath expr="." position="inside">
             <script type="text/javascript" src="/base_fontawesome/static/src/js/form_renderer.js"/>
             <script type="text/javascript" src="/base_fontawesome/static/src/js/list_renderer.js"/>
         </xpath>
     </template>
-    
+
     <template id="report_assets_common" inherit_id="web.report_assets_common">
         <xpath expr="link[@href='/web/static/lib/fontawesome/css/font-awesome.css']" position="replace">
             <link rel="stylesheet" type="text/css" href="/base_fontawesome/static/lib/fontawesome-6.7.2/css/all.css"/>
