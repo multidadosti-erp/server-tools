@@ -10024,6 +10024,10 @@ readers do not read off random characters that represent icons */
   --fa: "\f009";
   --fa--fa: "\f009\f009"; }
 
+.fa-odoo-kanban {
+  --fa: "\e64f";
+  --fa--fa: "\e64f\e64f"; }
+
 .fa-book-tanakh {
   --fa: "\f827";
   --fa--fa: "\f827\f827"; }
