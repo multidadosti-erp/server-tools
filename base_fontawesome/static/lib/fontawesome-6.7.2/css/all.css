@@ -10032,6 +10032,10 @@ readers do not read off random characters that represent icons */
   --fa: "\e1d2";
   --fa--fa: "\e1d2\e1d2"; }
 
+  .fa-odoo-pivot {
+  --fa: "\e291";
+  --fa--fa: "\e291\e291"; }
+
 .fa-book-tanakh {
   --fa: "\f827";
   --fa--fa: "\f827\f827"; }
