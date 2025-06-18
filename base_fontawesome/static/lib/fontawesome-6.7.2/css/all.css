@@ -10028,6 +10028,10 @@ readers do not read off random characters that represent icons */
   --fa: "\e64f";
   --fa--fa: "\e64f\e64f"; }
 
+.fa-odoo-list {
+  --fa: "\e1d2";
+  --fa--fa: "\e1d2\e1d2"; }
+
 .fa-book-tanakh {
   --fa: "\f827";
   --fa--fa: "\f827\f827"; }
