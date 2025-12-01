@@ -2,68 +2,71 @@
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 
-================
-Database cleanup
-================
+Limpeza de banco de dados
+=========================
 
-Clean your Odoo database from remnants of modules, models, columns and
-tables left by uninstalled modules (prior to 7.0) or a homebrew database
-upgrade to a new major version of Odoo.
+Limpe seu banco de dados Odoo dos restos de modulos, modelos, colunas e
+tabelas deixados por modulos desinstalados (antes da versao 7.0) ou por
+uma atualizacao artesanal para uma nova versao principal do Odoo.
 
-Caution! This module is potentially harmful and can *easily* destroy the
-integrity of your data. Do not use if you are not entirely comfortable
-with the technical details of the Odoo data model of *all* the modules
-that have ever been installed on your database, and do not purge any module,
-model, column or table if you do not know exactly what you are doing.
+Atencao! Este modulo pode ser perigoso e *facilmente* destruir a integridade
+dos seus dados. Nao use se voce nao domina os detalhes tecnicos do modelo
+de dados do Odoo de *todos* os modulos que ja foram instalados em seu banco
+de dados, e nao elimine nenhum modulo, modelo, coluna ou tabela sem saber
+exatamente o que esta fazendo.
 
-Usage
-=====
+Uso
+===
 
-After installation of this module, go to the Settings menu -> Technical ->
-Database cleanup. This menu is only available to members of the *Access Rights*
-group. Go through the modules, models, columns and tables
-entries under this menu (in that order) and find out if there is orphaned data
-in your database. You can either delete entries by line, or sweep all entries
-in one big step (if you are *really* confident).
+Apos instalar o modulo, va em Menu Configuracoes -> Tecnico -> Limpeza do
+Banco de Dados. Este menu esta disponivel apenas para membros do grupo
+*Direitos de Acesso*. Passe pelos registros de modulos, modelos, colunas e
+tabelas (nesta ordem) para identificar dados orfaos em seu banco. Voce pode
+excluir entrada por entrada ou eliminar tudo de uma vez (somente se estiver
+*realmente* seguro).
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
-    :alt: Try me on Runbot
+    :alt: Experimente no Runbot
     :target: https://runbot.odoo-community.org/runbot/149/11.0
 
-Bug Tracker
-===========
+Rastreamento de bugs
+====================
 
-Bugs are tracked on `GitHub Issues <https://github.com/OCA/database_cleanup/issues>`_.
-In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback.
+Os bugs sao acompanhados em `GitHub Issues <https://github.com/OCA/database_cleanup/issues>`_.
+Em caso de problemas, verifique se a situacao ja foi relatada. Se voce a
+identificou primeiro, ajude com um feedback detalhado.
 
-Credits
-=======
+Creditos
+========
 
-Images
-------
+Imagens
+-------
 
-* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
+* Odoo Community Association: `Icone <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
 
-Contributors
-------------
+Contribuidores
+--------------
 
 * Stefan Rijnhart <stefan@opener.amsterdam>
 * Holger Brunn <hbrunn@therp.nl>
+* Andrea Stirpe
 
-Do not contact contributors directly about help with questions or problems concerning this addon, but use the `community mailing list <mailto:community@mail.odoo.com>`_ or the `appropriate specialized mailinglist <https://odoo-community.org/groups>`_ for help, and the bug tracker linked in `Bug Tracker`_ above for technical issues.
+Nao entre em contato diretamente com os contribuidores sobre duvidas ou
+problemas referentes a este addon. Use a `lista de e-mails da comunidade <mailto:community@mail.odoo.com>`_
+ou a `lista especializada apropriada <https://odoo-community.org/groups>`_ para obter ajuda,
+e o rastreador de bugs citado em `Rastreamento de bugs`_ para questoes tecnicas.
 
-Maintainer
+Mantenedor
 ----------
 
 .. image:: https://odoo-community.org/logo.png
    :alt: Odoo Community Association
    :target: https://odoo-community.org
 
-This module is maintained by the OCA.
+Este modulo e mantido pela OCA.
 
-OCA, or the Odoo Community Association, is a nonprofit organization whose
-mission is to support the collaborative development of Odoo features and
-promote its widespread use.
+A OCA, ou Odoo Community Association, e uma organizacao sem fins lucrativos
+cuja missao e apoiar o desenvolvimento colaborativo de recursos para o Odoo
+e promover seu uso generalizado.
 
-To contribute to this module, please visit https://odoo-community.org.
+Para contribuir com este modulo, acesse https://odoo-community.org.

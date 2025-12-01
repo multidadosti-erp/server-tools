@@ -21,40 +21,42 @@ class CleanupPurgeLineColumn(models.TransientModel):
         """
         Unlink columns upon manual confirmation.
         """
-        if self:
-            objs = self
-        else:
-            objs = self.env['cleanup.purge.line.column']\
-                .browse(self._context.get('active_ids'))
-        for line in objs:
+        for line in self._get_target_lines():
             if line.purged:
                 continue
-            model_pool = self.env[line.model_id.model]
-            # Check whether the column actually still exists.
-            # Inheritance such as stock.picking.in from stock.picking
-            # can lead to double attempts at removal
-            self.env.cr.execute(
-                'SELECT count(attname) FROM pg_attribute '
-                'WHERE attrelid = '
-                '( SELECT oid FROM pg_class WHERE relname = %s ) '
-                'AND attname = %s',
-                (model_pool._table, line.name))
-            if not self.env.cr.fetchone()[0]:
-                continue
+            try:
+                model_pool = self.env[line.model_id.model]
+                # Check whether the column actually still exists.
+                # Inheritance such as stock.picking.in from stock.picking
+                # can lead to double attempts at removal
+                self.env.cr.execute(
+                    'SELECT count(attname) FROM pg_attribute '
+                    'WHERE attrelid = '
+                    '( SELECT oid FROM pg_class WHERE relname = %s ) '
+                    'AND attname = %s',
+                    (model_pool._table, line.name))
+                if not self.env.cr.fetchone()[0]:
+                    continue
 
-            self.logger.info(
-                'Dropping column %s from table %s',
-                line.name, model_pool._table)
-            self.env.cr.execute(
-                'ALTER TABLE %s DROP COLUMN %s',
-                (
-                    IdentifierAdapter(model_pool._table),
-                    IdentifierAdapter(line.name)
-                ))
-            line.write({'purged': True})
-            # we need this commit because the ORM will deadlock if
-            # we still have a pending transaction
-            self.env.cr.commit()  # pylint: disable=invalid-commit
+                self.logger.info(
+                    'Dropping column %s from table %s',
+                    line.name, model_pool._table)
+                self.env.cr.execute(
+                    'ALTER TABLE %s DROP COLUMN %s',
+                    (
+                        IdentifierAdapter(model_pool._table),
+                        IdentifierAdapter(line.name)
+                    ))
+                line.safe_write({'purged': True, 'last_error': False})
+                # we need this commit because the ORM will deadlock if
+                # we still have a pending transaction
+                self.env.cr.commit()  # pylint: disable=invalid-commit
+            except Exception as err:  # pragma: no cover - defensive logging
+                self.env.cr.rollback()
+                line.safe_write({'last_error': str(err)})
+                self.logger.exception(
+                    'Failed to purge column %s', line.name or line.id
+                )
         return True
 
 

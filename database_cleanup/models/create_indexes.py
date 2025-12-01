@@ -15,26 +15,33 @@ class CreateIndexesLine(models.TransientModel):
 
     @api.multi
     def purge(self):
-        tables = set()
-        for field in self.mapped('field_id'):
-            model = self.env[field.model]
-            name = '%s_%s_index' % (model._table, field.name)
-            self.env.cr.execute(
-                'create index %s ON %s (%s)',
-                (
-                    IdentifierAdapter(name, quote=False),
-                    IdentifierAdapter(model._table),
-                    IdentifierAdapter(field.name),
-                ),
-            )
-            tables.add(model._table)
-        for table in tables:
-            self.env.cr.execute(
-                'analyze %s', (IdentifierAdapter(model._table),)
-            )
-        self.write({
-            'purged': True,
-        })
+        for line in self._get_target_lines():
+            if line.purged or not line.field_id:
+                continue
+            try:
+                field = line.field_id
+                model = self.env[field.model]
+                name = '%s_%s_index' % (model._table, field.name)
+                self.env.cr.execute(
+                    'create index %s ON %s (%s)',
+                    (
+                        IdentifierAdapter(name, quote=False),
+                        IdentifierAdapter(model._table),
+                        IdentifierAdapter(field.name),
+                    ),
+                )
+                self.env.cr.execute(
+                    'analyze %s', (IdentifierAdapter(model._table),)
+                )
+                line.safe_write({'purged': True, 'last_error': False})
+                self.env.cr.commit()  # pylint: disable=invalid-commit
+            except Exception as err:  # pragma: no cover - defensive logging
+                self.env.cr.rollback()
+                line.safe_write({'last_error': str(err)})
+                self.logger.exception(
+                    'Failed to create index for %s', line.name or line.id
+                )
+        return True
 
 
 class CreateIndexesWizard(models.TransientModel):

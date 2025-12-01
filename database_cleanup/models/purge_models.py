@@ -49,55 +49,60 @@ class CleanupPurgeLineModel(models.TransientModel):
             'purge': True,
         }
 
-        if self:
-            objs = self
-        else:
-            objs = self.env['cleanup.purge.line.model']\
-                .browse(self._context.get('active_ids'))
-        for line in objs:
-            self.env.cr.execute(
-                "SELECT id, model from ir_model WHERE model = %s",
-                (line.name,))
-            row = self.env.cr.fetchone()
-            if not row:
+        for line in self._get_target_lines():
+            if line.purged:
                 continue
-            self.logger.info('Purging model %s', row[1])
-            attachments = self.env['ir.attachment'].search([
-                ('res_model', '=', line.name)
-            ])
-            if attachments:
+            try:
                 self.env.cr.execute(
-                    "UPDATE ir_attachment SET res_model = NULL "
-                    "WHERE id in %s",
-                    (tuple(attachments.ids), ))
-            self.env['ir.model.constraint'].search([
-                ('model', '=', line.name),
-            ]).unlink()
-            cronjobs = self.env['ir.cron'].with_context(
-                active_test=False
-            ).search([
-                ('model_id.model', '=', line.name),
-            ])
-            if cronjobs:
-                cronjobs.unlink()
-            relations = self.env['ir.model.fields'].search([
-                ('relation', '=', row[1]),
-            ]).with_context(**context_flags)
-            for relation in relations:
-                try:
-                    # Fails if the model on the target side
-                    # cannot be instantiated
-                    relation.unlink()
-                except KeyError:
-                    pass
-                except AttributeError:
-                    pass
-            self.env['ir.model.relation'].search([
-                ('model', '=', line.name)
-            ]).with_context(**context_flags).unlink()
-            self.env['ir.model'].browse([row[0]])\
-                .with_context(**context_flags).unlink()
-            line.write({'purged': True})
+                    "SELECT id, model from ir_model WHERE model = %s",
+                    (line.name,))
+                row = self.env.cr.fetchone()
+                if not row:
+                    continue
+                self.logger.info('Purging model %s', row[1])
+                attachments = self.env['ir.attachment'].search([
+                    ('res_model', '=', line.name)
+                ])
+                if attachments:
+                    self.env.cr.execute(
+                        "UPDATE ir_attachment SET res_model = NULL "
+                        "WHERE id in %s",
+                        (tuple(attachments.ids), ))
+                self.env['ir.model.constraint'].search([
+                    ('model', '=', line.name),
+                ]).unlink()
+                cronjobs = self.env['ir.cron'].with_context(
+                    active_test=False
+                ).search([
+                    ('model_id.model', '=', line.name),
+                ])
+                if cronjobs:
+                    cronjobs.unlink()
+                relations = self.env['ir.model.fields'].search([
+                    ('relation', '=', row[1]),
+                ]).with_context(**context_flags)
+                for relation in relations:
+                    try:
+                        # Fails if the model on the target side
+                        # cannot be instantiated
+                        relation.unlink()
+                    except KeyError:
+                        pass
+                    except AttributeError:
+                        pass
+                self.env['ir.model.relation'].search([
+                    ('model', '=', line.name)
+                ]).with_context(**context_flags).unlink()
+                self.env['ir.model'].browse([row[0]])\
+                    .with_context(**context_flags).unlink()
+                line.safe_write({'purged': True, 'last_error': False})
+                self.env.cr.commit()  # pylint: disable=invalid-commit
+            except Exception as err:  # pragma: no cover - defensive logging
+                self.env.cr.rollback()
+                line.safe_write({'last_error': str(err)})
+                self.logger.exception(
+                    'Failed to purge model %s', line.name or line.id
+                )
         return True
 
 

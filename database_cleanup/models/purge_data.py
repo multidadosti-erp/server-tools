@@ -16,15 +16,21 @@ class CleanupPurgeLineData(models.TransientModel):
     @api.multi
     def purge(self):
         """Unlink data entries upon manual confirmation."""
-        if self:
-            objs = self
-        else:
-            objs = self.env['cleanup.purge.line.data']\
-                .browse(self._context.get('active_ids'))
-        to_unlink = objs.filtered(lambda x: not x.purged and x.data_id)
-        self.logger.info('Purging data entries: %s', to_unlink.mapped('name'))
-        to_unlink.mapped('data_id').unlink()
-        return to_unlink.write({'purged': True})
+        for line in self._get_target_lines():
+            if line.purged or not line.data_id:
+                continue
+            try:
+                self.logger.info('Purging data entry: %s', line.name)
+                line.data_id.unlink()
+                line.safe_write({'purged': True, 'last_error': False})
+                self.env.cr.commit()  # pylint: disable=invalid-commit
+            except Exception as err:  # pragma: no cover - defensive logging
+                self.env.cr.rollback()
+                line.safe_write({'last_error': str(err)})
+                self.logger.exception(
+                    'Failed to purge data entry %s', line.name or line.id
+                )
+        return True
 
 
 class CleanupPurgeWizardData(models.TransientModel):

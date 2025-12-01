@@ -40,28 +40,42 @@ class CleanupPurgeLineModule(models.TransientModel):
         Uninstall modules upon manual confirmation, then reload
         the database.
         """
-        module_names = self.filtered(lambda x: not x.purged).mapped('name')
-        modules = self.env['ir.module.module'].search([
-            ('name', 'in', module_names)
-        ])
-        if not modules:
-            return True
-        self.logger.info('Purging modules %s', ', '.join(module_names))
-        modules.filtered(
-            lambda x: x.state == 'to install'
-        ).write({'state': 'uninstalled'})
-        modules.filtered(
-            lambda x: x.state in ('to upgrade', 'to remove')
-        ).write({'state': 'installed'})
-        modules.filtered(
-            lambda x: x.state == 'installed' and x.name != 'base'
-        ).button_immediate_uninstall()
-        modules.refresh()
-        modules.filtered(
-            lambda x: x.state not in (
-                'installed', 'to upgrade', 'to remove', 'to install')
-        ).unlink()
-        return self.write({'purged': True})
+        module_model = self.env['ir.module.module']
+        for line in self._get_target_lines():
+            if line.purged:
+                continue
+            try:
+                modules = module_model.search([
+                    ('name', '=', line.name)
+                ])
+                if not modules:
+                    line.safe_write({'purged': True, 'last_error': False})
+                    self.env.cr.commit()  # pylint: disable=invalid-commit
+                    continue
+                self.logger.info('Purging module %s', ', '.join(modules.mapped('name')))
+                modules.filtered(
+                    lambda x: x.state == 'to install'
+                ).write({'state': 'uninstalled'})
+                modules.filtered(
+                    lambda x: x.state in ('to upgrade', 'to remove')
+                ).write({'state': 'installed'})
+                modules.filtered(
+                    lambda x: x.state == 'installed' and x.name != 'base'
+                ).button_immediate_uninstall()
+                modules.refresh()
+                modules.filtered(
+                    lambda x: x.state not in (
+                        'installed', 'to upgrade', 'to remove', 'to install')
+                ).unlink()
+                line.safe_write({'purged': True, 'last_error': False})
+                self.env.cr.commit()  # pylint: disable=invalid-commit
+            except Exception as err:  # pragma: no cover - defensive logging
+                self.env.cr.rollback()
+                line.safe_write({'last_error': str(err)})
+                self.logger.exception(
+                    'Failed to purge module %s', line.name or line.id
+                )
+        return True
 
 
 class CleanupPurgeWizardModule(models.TransientModel):

@@ -16,6 +16,7 @@
                         <group>
                             <field name="name" />
                             <field name="purged" />
+                            <field name="last_error" readonly="1" attrs="{'invisible': [('last_error', '=', False)]}"/>
                         </group>
                         <footer>
                             <button type="object" name="purge" class="oe_highlight"
@@ -33,6 +34,7 @@
             <tree string="Purge models" delete="false" create="false">
                 <field name="name" />
                 <field name="purged" />
+                <field name="last_error" readonly="1"/>
                 <button type="object" name="purge"
                     icon="fa-times-circle text-danger" string="Purge this model"
                     attrs="{'invisible': [('purged', '=', True)]}"/>

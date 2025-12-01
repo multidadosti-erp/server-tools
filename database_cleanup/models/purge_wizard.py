@@ -16,12 +16,27 @@ class CleanupPurgeLine(models.AbstractModel):
     name = fields.Char('Name', readonly=True)
     purged = fields.Boolean('Purged', readonly=True)
     wizard_id = fields.Many2one('cleanup.purge.wizard')
+    last_error = fields.Char('Last error', readonly=True)
 
     logger = logging.getLogger('odoo.addons.database_cleanup')
 
     @api.multi
     def purge(self):
         raise NotImplementedError
+
+    def _get_target_lines(self):
+        """Return explicit recordset for wizard actions."""
+        if self:
+            return self
+        active_ids = self._context.get('active_ids') or []
+        return self.browse(active_ids)
+
+    def safe_write(self, values):
+        """Escreve apenas se o registro ainda existir."""
+        existing = self.exists()
+        if not existing:
+            return False
+        return super(CleanupPurgeLine, existing).write(values)
 
     @api.model
     def create(self, values):

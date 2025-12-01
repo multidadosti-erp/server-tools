@@ -26,8 +26,21 @@ class CleanupPurgeLineProperty(models.TransientModel):
     @api.multi
     def purge(self):
         """Delete properties"""
-        self.write({'purged': True})
-        return self.mapped('property_id').unlink()
+        for line in self._get_target_lines():
+            if line.purged or not line.property_id:
+                continue
+            try:
+                line.property_id.unlink()
+                line.safe_write({'purged': True, 'last_error': False})
+                self.env.cr.commit()  # pylint: disable=invalid-commit
+            except Exception as err:  # pragma: no cover - defensive logging
+                self.env.cr.rollback()
+                line.safe_write({'last_error': str(err)})
+                self.logger.exception(
+                    'Failed to purge property line %s',
+                    line.name or line.id,
+                )
+        return True
 
 
 class CleanupPurgeWizardProperty(models.TransientModel):
